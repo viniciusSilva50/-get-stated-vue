@@ -50,3 +50,36 @@ let app6 = new Vue({
         message: 'Felile Lauri'
     }
 });
+
+let firstComponent = Vue.component('component-item', {
+    props: ['meat', 'beer'],
+    template: '<li>{{meat.text}} com {{beer}}</li>'
+});
+
+let superBeer = Vue.component('super-beer', {
+   props: ['beer'],
+   template: '<h1>{{beer}}</h1>'
+});
+
+new Vue({
+    el: '#first-component',
+    data: {
+        message: 'Oi componente',
+        meats: [
+            {id: 0, text:'Picanha'},
+            {id: 1, text:'Alcatra'},
+            {id: 2, text:'Contra file'},
+            {id: 3, text:'Frango'},
+            {id: 4, text:'Peixe'},
+            {id: 5, text:'Bacon'},
+            {id: 6, text:'Presunto'},
+            {id: 7, text:'Coração'},
+        ],
+        beer: 'Erdinger'
+    },
+    components: {
+        firstComponent,
+        superBeer
+    }
+});
+

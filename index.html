@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Vue.js</title>
-
-
+    <script src="app/js/vue.js" ></script>
 </head>
 <body>
 
@@ -17,11 +16,13 @@
         Hover your mouse over me for a few seconds
         to see my dynamically bound title!
       </span>
-    </div><br>
+    </div>
+    <br>
 
     <div id="app-3">
         <span v-if="seen">Visivel {{content}} </span>
-    </div><br>
+    </div>
+    <br>
 
     <div id="app-4">
         <ul>
@@ -46,7 +47,20 @@
     </div>
     <br>
 
-    <script src="app/js/vue.js" ></script>
+    <div id="first-component">
+        <p>{{message}}</p>
+        <ul>
+            <component-item
+                v-for="meat in meats"
+                :key="meat.id"
+                v-bind:meat="meat"
+                v-bind:beer="beer">
+            </component-item>
+        </ul>
+        <super-beer v-bind:beer="beer"></super-beer>
+    </div>
+    <br>
+
     <script src="app/js/main.js" ></script>
 </body>
 </html>
