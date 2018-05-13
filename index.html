@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.js</title>
+
+
+</head>
+<body>
+
+    <div id="app">
+        <p>{{ message }}</p>
+    </div>
+
+    <div id="app-2">
+      <span v-bind:title="message">
+        Hover your mouse over me for a few seconds
+        to see my dynamically bound title!
+      </span>
+    </div><br>
+
+    <div id="app-3">
+        <span v-if="seen">Visivel {{content}} </span>
+    </div><br>
+
+    <div id="app-4">
+        <ul>
+            <li v-for="car in cars">
+                {{car.name}}
+            </li>
+        </ul>
+    </div>
+    <br>
+
+    <div id="app-5">
+        <p>{{message}}</p>
+        <button v-on:click="reverseText" >
+            Inverter o texto!
+        </button>
+    </div>
+    <br>
+
+    <div id="app-6">
+        <p>{{message}}</p>
+        <input v-model="message" type="text"/>
+    </div>
+    <br>
+
+    <script src="app/js/vue.js" ></script>
+    <script src="app/js/main.js" ></script>
+</body>
+</html>
