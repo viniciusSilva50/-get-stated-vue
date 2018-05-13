@@ -1,85 +1,66 @@
-let app = new Vue({
-    el: '#app',
+class Person {
+    constructor(name = '', age = 0){
+        this.name = name;
+        this.age = age;
+    }
+}
+
+class Dream {
+    constructor(name = '', cost = 0){
+        this.name = name;
+        this.cost = cost;
+    }
+}
+
+let dreams = [new Dream('Apartamento', 6000000), new Dream('Carro', 1200000)];
+
+let person = new Person('Vinicius da Silva', 23);
+
+// Data and Methods
+let vm = new Vue({
+    el:'#person',
+    data: person
+});
+
+let dream = new Vue({
+    el:'#dream',
     data: {
-        message: 'Olá'
+        dreams : dreams
     }
 });
 
-let app2 = new Vue({
-    el: '#app-2',
-    data:{
-        message: 'Loaded this page on ' + new Date().toLocaleString(),
-    }
-});
+console.log('The property data is equals to dreams array', dream.$data === dreams);
+console.log('The property data is equals to dreams array', dream.$data.dreams === dreams);
+console.log('The property data is equals to dreams array', dream.dreams === dreams);
 
-let app3 = new Vue({
-    el:'#app-3',
-    data: {
-        seen: true,
-        content: 'Vue.js'
-    }
-});
-
-let app4 = new Vue({
-    el: '#app-4',
-    data: {
-        cars: [
-            {name: 'AMD C63 Coupe'},
-            {name: 'AMD E63 S'},
-            {name: 'AMD S63'},
-        ]
-    }
-});
-
-let app5 = new Vue({
-    el: '#app-5',
-    data: {
-        message : 'Vinicius da Silva'
-    },
-    methods: {
-        reverseText: function(){
-          this.message = [... this.message].reverse().join('');
-        }
-    }
-
-});
-
-let app6 = new Vue({
-    el:'#app-6',
-    data: {
-        message: 'Felile Lauri'
-    }
-});
-
-let firstComponent = Vue.component('component-item', {
-    props: ['meat', 'beer'],
-    template: '<li>{{meat.text}} com {{beer}}</li>'
-});
-
-let superBeer = Vue.component('super-beer', {
-   props: ['beer'],
-   template: '<h1>{{beer}}</h1>'
-});
+// Instance Lifecycle Hooks
 
 new Vue({
-    el: '#first-component',
     data: {
-        message: 'Oi componente',
-        meats: [
-            {id: 0, text:'Picanha'},
-            {id: 1, text:'Alcatra'},
-            {id: 2, text:'Contra file'},
-            {id: 3, text:'Frango'},
-            {id: 4, text:'Peixe'},
-            {id: 5, text:'Bacon'},
-            {id: 6, text:'Presunto'},
-            {id: 7, text:'Coração'},
-        ],
-        beer: 'Erdinger'
+        age: 23,
     },
-    components: {
-        firstComponent,
-        superBeer
+    beforeCreate: function(){
+        console.log('Before Created');
+        console.log('Init Events and Lifecycle');
+    },
+    created: function () {
+        console.log('Created');
+        console.log('Init Injections and reactivity');
+    },
+    beforeMount: function () {
+        console.log('Before Mount');
+        console.log('Verify if the instance have el and template options');
+        console.log('Compile template into render function or outerHTML as no template');
+        console.log('If the el option is not set, only set when the vm.$mount(el) is called');
+    },
+    mounted: function () {
+        console.log('Mouted');
+    },
+    beforeDestroy: function () {
+        console.log('Before Destroy');
+    },
+    destroy: function () {
+        console.log('Destroy');
     }
-});
 
+});
